@@ -18,7 +18,7 @@ Using a custom **Spatio-Temporal Join**, I processed over **800,000 crime record
 
 * **Spatio-Temporal Engineering:** Used `sklearn.BallTree` to map crime density within a 500m radius of each property, strictly matching the month of sale.
 * **Crime Severity Index:** Moved beyond simple crime counts by weighting incidents based on severity (e.g., Violence = 10, Shoplifting = 2, Anti-social behaviour = 1).
-* [cite_start]**Hyperparameter Optimization:** Utilized **Optuna** to automate the tuning of XGBoost hyperparameters (learning rate, max depth, subsample), maximizing model accuracy[cite: 1401, 1435].
+* **Hyperparameter Optimization:** Utilized **Optuna** to automate the tuning of XGBoost hyperparameters (learning rate, max depth, subsample), maximizing model accuracy.
 * **Advanced ML Pipeline:** Compared Linear Regression, Polynomial Regression, KNN, and Gradient Boosting.
     * **Winner:** XGBoost Regressor ($R^2 = 0.92$, MAE = £64k).
 * **Opportunity Index:** A composite metric combining Normalised Price and Crime Severity using Log-MinMax transformation to identify "Hidden Gems".
@@ -43,20 +43,20 @@ The project utilizes two primary datasets, hosted in this repository via compres
     * **Spatio-Temporal Join:** Linked crimes to properties based on a 500m radius and specific month.
     * **Composite Scoring:** Created a "Weighted Severity Score" to quantify danger levels using official sentencing guidelines.
 3.  **Hypothesis Testing:** Discovered that wealthy areas suffer disproportionately from theft, while affordable areas suffer more from violence and anti-social behaviour.
-4.  [cite_start]**Modelling:** Trained an XGBoost model (tuned via **Optuna**) to predict house prices, finding that location, floor area, and local crime severity are the dominant drivers of value[cite: 1361, 1376].
+4.  **Modelling:** Trained an XGBoost model (tuned via **Optuna**) to predict house prices, finding that location, floor area, and local crime severity are the dominant drivers of value.
 
 ---
 
 ## 📈 Results & Performance
 
-I ran a "Model Tournament" to select the best predictor. [cite_start]The XGBoost model, optimized with Optuna, significantly outperformed the baselines, explaining 92% of the variance in house prices[cite: 1435].
+I ran a "Model Tournament" to select the best predictor. The XGBoost model, optimized with Optuna, significantly outperformed the baselines, explaining 92% of the variance in house prices.
 
 | Model Strategy | $R^2$ Score | Mean Absolute Error (£) | Verdict |
 | :--- | :--- | :--- | :--- |
-| Linear Regression | 0.43 | £186,552 | [cite_start]❌ Too Simple [cite: 1622] |
-| Polynomial Regression | 0.62 | £170,755 | [cite_start]⚠️ Captures some curves [cite: 1285] |
-| KNN (Spatial) | 0.81 | £93,708 | [cite_start]⚠️ Good local patterns [cite: 1327] |
-| **XGBoost (Optuna Tuned)** | **0.92** | **£64,300** | [cite_start]✅ **Selected** [cite: 1435] |
+| Linear Regression | 0.43 | £186,552 | ❌ Too Simple |
+| Polynomial Regression | 0.62 | £170,755 | ⚠️ Captures some curves |
+| KNN (Spatial) | 0.81 | £93,708 | ⚠️ Good local patterns |
+| **XGBoost (Optuna Tuned)** | **0.92** | **£64,300** | ✅ **Selected** |
 
 ---
 
